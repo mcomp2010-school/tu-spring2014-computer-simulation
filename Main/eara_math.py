@@ -1,4 +1,5 @@
 import math
+import random
 
 
 class Integral(object):
@@ -22,6 +23,44 @@ class DescStat(object):
     Computer Simulation Class
     """
 
+    @staticmethod
+    def monte_carlo(integral):
+        lowerbound = float(integral.lowerbound)
+        upperbound = float(integral.upperbound)
+        n = float(integral.n)
+        function = integral.function
+        # Variables
+        accept=0       # acceptances
+        rx=0.0         # random number between a and b 
+        ry=0.0         # random number between 0 and ymax
+        ymax = 0.0
+        try:
+            ymax = function(0)    # maximum value of normal pdf
+            stop_counter = False
+            counter = 0.0
+            times  = 1
+            while stop_counter == False:
+                counter = counter + .5
+                times= times + 1
+                eval_func = function(counter)
+                if eval_func > ymax and times < 100:
+                    ymax = eval_func
+                else:
+                    stop_counter = True 
+        except:
+            ymax = 3
+
+        # Integration
+        for i in range(int(n)):
+            rx=lowerbound+(upperbound-lowerbound)*random.random()
+            ry=ymax*random.random()
+            # Accept/Reject
+            if ry<function(rx):
+                accept +=1
+        return str(integral) + ' = ' + str((upperbound-lowerbound)*
+                                           ymax*
+                                           float(accept)/float(n))
+    
     @staticmethod
     def trapeziod_rule(integral):
         lowerbound = float(integral.lowerbound)
@@ -71,6 +110,22 @@ class DescStat(object):
             total = total + float(func_item(item))
         return func_total(total)
 
+    @staticmethod
+    def summation_func(upper=1.0, func_item=None, func_total=None):
+        if not func_item:
+            func_item = lambda x: float(x)
+        if not func_total:
+            func_total = lambda x: float(x)
+
+        total = 0.0
+        count = 1.0
+        while (count <= upper):
+            
+            total = total + float(func_item(count))
+            count = count + .2
+ 
+        return func_total(total)
+    
     @staticmethod
     def mean(list_of_number):
         return DescStat.summation(list_of_number,
