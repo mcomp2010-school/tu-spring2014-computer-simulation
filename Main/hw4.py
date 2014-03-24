@@ -48,14 +48,86 @@ for m in range(5, 60, 5):
     fut = past - pre
     past = 1 - math.pow(math.e, d )
     
-    print '%s\t%s'%(m, -fut)
+    #print '%s\t%s'%(m, -fut)
 
-
+'''
+#############################################
+'''
 import numpy
 
-a =numpy.random.exponential(float(20)/float(225),1000)
+a = numpy.random.exponential(float(20)/float(225),1000)
 
 
+'''
+#############################################
+'''
 
 
+import scipy.stats as st
 
+class my_pdf(st.rv_continuous):
+    def _pdf(self,x):
+        xa = float(20) / float(225)
+        d= -1.0 * p * x
+
+        pre = 1 - math.pow(math.e, d )
+    
+        return pre
+
+my_cv = my_pdf(a=0.0,b=30.0,name='my_pdf')
+print my_cv.rvs(size=5) 
+# Chi Square from Normal
+
+#sum(x-m/v)
+
+class ChiSquareFromNormal(st.rv_continuous):
+    def _pdf(self,x):
+        return x-40/20
+
+my_cv = ChiSquareFromNormal(a=0.0,b=100.0,name='my_pdf')
+print my_cv.rvs(size=5) 
+
+"""
+OUTPUT:
+[ 4.25731918  4.20151548  4.10128827  4.09638405  4.34611102]
+"""
+
+# Laplace from Exponential
+
+class LaplaceFromExponential(st.rv_continuous):
+    def _pdf(self,x):
+        return 1 - math.pow(math.e, -x )
+
+my_cv = LaplaceFromExponential(a=0.0,b=100.0,name='my_pdf')
+print my_cv.rvs(size=5) 
+
+"""
+OUTPUT:
+[ 0.12679166  1.03864539  0.61428448  0.38842799  0.23260088]
+"""
+
+# cauchy from normal
+class CauchyFromNormal(st.rv_continuous):
+    def _pdf(self,x):
+        return (x-40/20) - (x-300/20) 
+
+my_cv = CauchyFromNormal(a=0.0,b=100.0,name='my_pdf')
+print my_cv.rvs(size=5) 
+
+"""
+OUTPUT:
+[ 0.03843663  0.03411253  0.06767783  0.03259841  0.011621  ]
+"""
+
+# TRiangle from uniform
+class TriangleFromUniform(st.rv_continuous):
+    def _pdf(self,x):
+        return math.log(1+(2-1)*x) 
+
+my_cv = TriangleFromUniform(a=0.0,b=100.0,name='my_pdf')
+print my_cv.rvs(size=5) 
+
+"""
+OUTPUT:
+[ 1.44969574  1.49228347  1.68398838  1.29081857  1.11232111]
+"""
