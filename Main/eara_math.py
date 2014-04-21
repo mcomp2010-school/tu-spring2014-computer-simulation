@@ -110,31 +110,7 @@ class DescStat(object):
             total = total + float(func_item(item))
         return func_total(total)
 
-    @staticmethod
-<<<<<<< HEAD
-    def monte_carlo(integral):
-        lowerbound = float(integral.lowerbound)
-        upperbound = float(integral.upperbound)
-        n = float(integral.n)
-        function = integral.function
 
-=======
-    def summation_func(upper=1.0, func_item=None, func_total=None):
-        if not func_item:
-            func_item = lambda x: float(x)
-        if not func_total:
-            func_total = lambda x: float(x)
-
-        total = 0.0
-        count = 1.0
-        while (count <= upper):
-            
-            total = total + float(func_item(count))
-            count = count + .2
- 
-        return func_total(total)
-    
->>>>>>> e1fca91bc877c4cff0491e34e90fc90899714be7
     @staticmethod
     def mean(list_of_number):
         return DescStat.summation(list_of_number,

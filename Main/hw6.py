@@ -196,3 +196,22 @@ Ouput of program:
 | 100 | [40, 24, 34, 22, 28, 35] |  30.5  | 6.979  |  [28.327, 32.673]  |       Yes       |
 +-----+--------------------------+--------+--------+--------------------+-----------------+
 '''
+
+
+
+table = prettytable.PrettyTable(['Clock','TPA',
+                                 'TPM','MACHST','NPIQ',
+                                 'MPIQ','AVGQL'])
+
+table.add_row([0,0,0,'IDLE',0,0,'0.0'])
+table.add_row([3,1,0,'BUSY',0,0,'0.0'])
+table.add_row([5,2,0,'BUSY',1,1,'0.40'])
+table.add_row([6,2,0,'BUSY',1,1,'0.33'])
+table.add_row([7,3,0,'BUSY',1,1,'0.43'])
+table.add_row([13,4,0,'BUSY',1,1,'0.45'])
+table.add_row([15,5,0,'BUSY',1,1,'0.44'])
+table.add_row([18,6,0,'BUSY',1,1,'0.34'])
+table.add_row([20,7,0,'BUSY',1,1,'0.49'])
+table.add_row([22,8,0,'BUSY',1,1,'0.50'])
+
+print table
