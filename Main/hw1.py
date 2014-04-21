@@ -9,20 +9,20 @@ def print_integrals(integral, list_n):
         print DescStat.trapeziod_rule(integral)
 
 '''
-Integeral 1
+Integral 1
 '''
 integral1 = Integral(0, math.pi, 10, lambda x: float(math.sin(x)), 'sin(x) dx')
 print_integrals(integral1, [10, 100, 1000])
 
 '''
-Integeral 2
+Integral 2
 '''
 function2 = lambda x: float(math.sqrt(15 * x))
 integral2 = Integral(1, 6, 10, function2, 'sqrt(15x) dx')
 print_integrals(integral2, [10, 100, 1000])
 
 '''
-Integeral 3
+Integral 3
 '''
 function3 = lambda x: float((2 * (math.pow(math.e, (x * (-1)) / 2))) /
                             (math.sqrt(2 * math.pi)))
@@ -30,14 +30,14 @@ integral3 = Integral(0, 5, 10, function3, '(2*e^(-x/2))/(sqrt(2PI)) dx')
 print_integrals(integral3, [10, 100, 1000])
 
 '''
-Integeral 4
+Integral 4
 '''
 function4 = lambda x: float(1.0 / float(x))
 integral4 = Integral(1, 3, 10, function4, 'dx 1/x')
 print_integrals(integral4, [10, 100, 1000])
 
 '''
-Integeral 5
+Integral 5
 '''
 function5 = lambda x: float(1.0 / float(1.0 + math.pow(x, 2)))
 integral5 = Integral(2, 4, 10, function5, 'dx 1/(1+x^2)')

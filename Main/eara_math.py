@@ -72,6 +72,13 @@ class DescStat(object):
         return func_total(total)
 
     @staticmethod
+    def monte_carlo(integral):
+        lowerbound = float(integral.lowerbound)
+        upperbound = float(integral.upperbound)
+        n = float(integral.n)
+        function = integral.function
+
+    @staticmethod
     def mean(list_of_number):
         return DescStat.summation(list_of_number,
                                   lambda x: x,
@@ -119,3 +126,5 @@ class DescStat(object):
     @staticmethod
     def coefficent_of_excess_kurtosis(list_of_numbers):
         return DescStat.coefficent_of_kurtosis(list_of_numbers) - 3
+
+
